@@ -1,7 +1,10 @@
 FROM python:alpine
 
 RUN apk update 
-RUN apk add build-base
+RUN apk add --no-cache make gcc libffi-dev musl-dev python3-dev  openssl-dev
+
+
+RUN pip install cffi
 RUN pip3 install --upgrade pip
 RUN pip install docker-compose
 
