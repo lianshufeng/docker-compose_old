@@ -1,4 +1,7 @@
 FROM python:alpine
+
+RUN apk update 
+RUN apk add build-base
 RUN pip3 install --upgrade pip
 RUN pip install docker-compose
 
