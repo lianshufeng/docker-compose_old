@@ -19,7 +19,8 @@ RUN apk add --no-cache --virtual .build-deps \
 
 RUN pip3 install --upgrade pip
 RUN pip install --no-cache-dir cffi docker-compose
-RUN apk del .build-deps
+RUN apk del .build-deps \
+	&& rm -rf /var/cache/apk/*
 
 
 COPY docker-compose-entrypoint.sh /usr/local/bin/
