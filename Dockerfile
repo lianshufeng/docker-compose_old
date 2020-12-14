@@ -1,9 +1,7 @@
 FROM python:alpine
 
 RUN apk update 
-#RUN apk add --no-cache make gcc libffi-dev musl-dev python3-dev  openssl-dev
-
-RUN apk add --no-cache \
+RUN apk add --no-cache --virtual .build-deps \
     bash \
     build-base \
     ca-certificates \
@@ -19,10 +17,9 @@ RUN apk add --no-cache \
     openssl-dev \
     zlib-dev
 
-
-RUN pip install cffi
 RUN pip3 install --upgrade pip
-RUN pip install docker-compose
+RUN pip install --no-cache-dir cffi docker-compose
+RUN apk del .build-deps
 
 
 COPY docker-compose-entrypoint.sh /usr/local/bin/
