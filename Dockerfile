@@ -30,7 +30,7 @@ RUN apk del .build-deps \
 # 运行环境
 FROM python:${PYTHON_VERSION}-alpine
 COPY --from=builder /usr/local/bin/docker-compose /usr/local/bin/docker-compose
-COPY --from=builder /usr/local/lib/${PYTHON_FOLDER}/site-packages/ /usr/local/lib/${PYTHON_FOLDER}/site-packages
+COPY --from=builder /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages
 
 
 
