@@ -1,6 +1,3 @@
-FROM --platform=linux/arm64/v8 arm64v8/python:alpine
-COPY qemu-aarch64-static /usr/bin/
-
 ARG PYTHON_VERSION=3.9.1
 
 #编译环境
