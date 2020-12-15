@@ -1,4 +1,9 @@
-FROM python:alpine
+ARG PYTHON_VERSION=3.9.1
+ARG PYTHON_FOLDER=python3.9
+
+#编译环境
+FROM python:${PYTHON_VERSION}-alpine AS build
+
 
 RUN apk update 
 RUN apk add --no-cache --virtual .build-deps \
@@ -17,10 +22,16 @@ RUN apk add --no-cache --virtual .build-deps \
     openssl-dev \
     zlib-dev
 
-RUN pip3 install --upgrade pip
-RUN pip install --no-cache-dir cffi docker-compose
+RUN pip install --no-cache-dir docker-compose
 RUN apk del .build-deps \
 	&& rm -rf /var/cache/apk/*
+
+
+# 运行环境
+FROM python:${PYTHON_VERSION}-alpine
+COPY --from=builder /usr/local/bin/docker-compose /usr/local/bin/docker-compose
+COPY --from=builder /usr/local/lib/${PYTHON_FOLDER}/site-packages/ /usr/local/lib/${PYTHON_FOLDER}/site-packages
+
 
 
 COPY docker-compose-entrypoint.sh /usr/local/bin/
