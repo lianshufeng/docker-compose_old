@@ -2,7 +2,7 @@ ARG PYTHON_VERSION=3.9.1
 ARG PYTHON_FOLDER=python3.9
 
 #编译环境
-FROM python:${PYTHON_VERSION}-alpine AS build
+FROM python:${PYTHON_VERSION}-alpine AS builder
 
 
 RUN apk update 
