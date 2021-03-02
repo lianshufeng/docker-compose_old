@@ -21,9 +21,9 @@ RUN apk add --no-cache --virtual .build-deps \
     openssl \
     openssl-dev \
     zlib-dev \
-	build-essential \
 	libssl-dev \
-	libffi-dev 
+	libffi-dev \
+	python-dev
 	 
 
 RUN python -m pip install --upgrade pip
