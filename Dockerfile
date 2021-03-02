@@ -22,7 +22,8 @@ RUN apk add --no-cache --virtual .build-deps \
     musl-dev \
     openssl \
     openssl-dev \
-    zlib-dev
+    zlib-dev \
+	rust
 
 
 RUN pip install pep517
