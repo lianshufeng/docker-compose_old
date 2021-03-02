@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.9.1
+ARG PYTHON_VERSION=3.9
 
 
 #编译环境
@@ -28,7 +28,7 @@ RUN pip install --no-cache-dir docker-compose
 # 运行环境
 FROM python:${PYTHON_VERSION}-alpine
 COPY --from=builder /usr/local/bin/docker-compose /usr/local/bin/docker-compose
-COPY --from=builder /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages
+COPY --from=builder /usr/local/lib/python${PYTHON_VERSION}/site-packages/ /usr/local/lib/python${PYTHON_VERSION}/site-packages
 
 
 
