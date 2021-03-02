@@ -23,8 +23,7 @@ RUN apk add --no-cache --virtual .build-deps \
     zlib-dev \
 	build-essential \
 	libssl-dev \
-	libffi-dev \
-	python-dev
+	libffi-dev 
 	 
 
 RUN python -m pip install --upgrade pip
