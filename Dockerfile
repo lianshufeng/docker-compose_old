@@ -20,7 +20,8 @@ RUN apk add --no-cache --virtual .build-deps \
     musl-dev \
     openssl \
     openssl-dev \
-    zlib-dev
+    zlib-dev \
+	python3-dev
 
 RUN pip install --no-cache-dir docker-compose
 
