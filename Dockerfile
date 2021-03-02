@@ -20,9 +20,11 @@ RUN apk add --no-cache --virtual .build-deps \
     musl-dev \
     openssl \
     openssl-dev \
-    zlib-dev \
-	python3-dev
+    zlib-dev 
 
+
+RUN pip install pep517
+RUN pip install cryptography
 RUN pip install --no-cache-dir docker-compose
 
 
