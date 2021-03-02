@@ -23,10 +23,7 @@ RUN apk add --no-cache --virtual .build-deps \
     zlib-dev 
 	 
 
-RUN python -m pip install --upgrade pip
-RUN pip install pep517 
-RUN pip install cryptography
-RUN pip install --no-cache-dir docker-compose
+
 
 
 # 运行环境
