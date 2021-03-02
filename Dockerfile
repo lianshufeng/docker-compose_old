@@ -21,8 +21,6 @@ RUN apk add --no-cache --virtual .build-deps \
     openssl \
     openssl-dev \
     zlib-dev \
-	libssl-dev \
-	libffi-dev \
 	python-dev
 	 
 
