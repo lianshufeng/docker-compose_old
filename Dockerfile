@@ -20,10 +20,11 @@ RUN apk add --no-cache --virtual .build-deps \
     musl-dev \
     openssl \
     openssl-dev \
-    zlib-dev 
+    zlib-dev \
+	build-essential \
 	 
 
-
+RUN pip install --no-cache-dir docker-compose
 
 
 # 运行环境
