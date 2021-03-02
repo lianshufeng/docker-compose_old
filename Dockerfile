@@ -20,8 +20,7 @@ RUN apk add --no-cache --virtual .build-deps \
     musl-dev \
     openssl \
     openssl-dev \
-    zlib-dev \
-	python-dev
+    zlib-dev 
 	 
 
 RUN python -m pip install --upgrade pip
