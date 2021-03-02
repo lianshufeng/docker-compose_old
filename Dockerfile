@@ -24,8 +24,6 @@ RUN apk add --no-cache --virtual .build-deps \
     openssl-dev \
     zlib-dev
 
-#清空缓存
-RUN sudo rm -rf ~/.cache/pip/*
 
 RUN pip install pep517
 RUN pip install -U pip
