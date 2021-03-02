@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.9.1
+ARG PYTHON_VERSION=3.9.2
 ARG PYTHON_PATH=3.9
 ARG ALPINE_VERSION=alpine:3.13
 
@@ -23,6 +23,9 @@ RUN apk add --no-cache --virtual .build-deps \
     openssl \
     openssl-dev \
     zlib-dev
+
+#清空缓存
+RUN sudo rm -rf ~/.cache/pip/*
 
 RUN pip install pep517
 RUN pip install -U pip
