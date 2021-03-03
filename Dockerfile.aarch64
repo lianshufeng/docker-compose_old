@@ -1,7 +1,8 @@
-ARG PYTHON_VERSION=${PYTHON_VERSION}
+ARG PYTHON_VERSION=3.9
+ARG ALPINE_VERSION=alpine
 
 #编译环境
-FROM --platform=linux/arm64/v8 arm64v8/python:${PYTHON_VERSION}-alpine AS builder
+FROM --platform=linux/arm64/v8 arm64v8/python:${PYTHON_VERSION}-${ALPINE_VERSION} AS builder
 COPY qemu-aarch64-static /usr/bin/
 
 RUN apk update 
@@ -19,16 +20,18 @@ RUN apk add --no-cache --virtual .build-deps \
     musl-dev \
     openssl \
     openssl-dev \
-    zlib-dev
+    zlib-dev \
+	rust \
+	cargo
 
 RUN pip install --no-cache-dir docker-compose
 
 
 # 运行环境
-FROM --platform=linux/arm64/v8 arm64v8/python:${PYTHON_VERSION}-alpine
+FROM --platform=linux/arm64/v8 arm64v8/python:${PYTHON_VERSION}-${ALPINE_VERSION}
 COPY qemu-aarch64-static /usr/bin/
 COPY --from=builder /usr/local/bin/docker-compose /usr/local/bin/docker-compose
-COPY --from=builder /usr/local/lib/python${PYTHON_VERSION}/site-packages/ /usr/local/lib/python${PYTHON_VERSION}/site-packages
+COPY --from=builder /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages
 
 
 
