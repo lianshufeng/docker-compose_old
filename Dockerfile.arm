@@ -23,8 +23,8 @@ RUN apk add --no-cache --virtual .build-deps \
     openssl \
     openssl-dev \
     zlib-dev \
-	rust \
-	cargo
+    rust \
+    cargo
 
 RUN pip install --no-cache-dir docker-compose
 
