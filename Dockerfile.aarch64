@@ -1,7 +1,8 @@
-ARG PYTHON_VERSION=3.9
+ARG PYTHON_VERSION=3.9.5
 ARG ALPINE_VERSION=alpine
+ARG DOCKER_VERSION=latest
 
-#编译环境
+# docker-compose
 FROM --platform=linux/arm64/v8 arm64v8/python:${PYTHON_VERSION}-${ALPINE_VERSION} AS builder
 COPY qemu-aarch64-static /usr/bin/
 
@@ -26,6 +27,9 @@ RUN apk add --no-cache --virtual .build-deps \
 
 RUN pip install --no-cache-dir docker-compose
 
+# docker-cli
+FROM --platform=linux/arm64/v8 docker:${DOCKER_VERSION} AS docker-cli
+COPY qemu-aarch64-static /usr/bin/
 
 # 运行环境
 FROM --platform=linux/arm64/v8 arm64v8/python:${PYTHON_VERSION}-${ALPINE_VERSION}

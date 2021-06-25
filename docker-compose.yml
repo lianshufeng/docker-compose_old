@@ -2,7 +2,7 @@ version: "3"
 
 services:
 
-  systemhelper:
+  docker-compose:
     build:
       args:
         http_proxy: http://192.168.31.222:808
