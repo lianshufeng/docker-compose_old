@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.9
+ARG PYTHON_VERSION=3.10
 ARG ALPINE_VERSION=alpine
 ARG DOCKER_VERSION=latest
 
@@ -35,7 +35,7 @@ FROM docker:${DOCKER_VERSION} AS docker-cli
 # 运行环境
 FROM python:${PYTHON_VERSION}-${ALPINE_VERSION} 
 COPY --from=builder /usr/local/bin/docker-compose /usr/local/bin/docker-compose
-COPY --from=builder /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages
+COPY --from=builder /usr/local/lib/python3.10/site-packages/ /usr/local/lib/python3.10/site-packages
 COPY --from=docker-cli /usr/local/bin/docker /usr/local/bin/docker
 
 
